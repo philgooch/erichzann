@@ -31,7 +31,7 @@ const ACT2_SCENES = {
   ambience: 'boarding_house',
   audio: [
     { src: 'Bleakwater_Docks-bent_tone_loop.ogg', volume: 0.4, loop: true },
-    { src: '07_Part_Fratres_String_Quartet.mp3', volume: 0.2, loop: false },
+    { src: '07_Part_Fratres_String_Quartet.mp3', volume: 0.4, loop: false },
   ],
   text: `<p>A week passes. Then two. The university term begins and you attend your lectures, take your notes, walk the long route from the campus back to the Rue d\u2019Auseil each evening. You have not yet found a shorter path. You are beginning to suspect there is none.</p>
 <p>The city is old and indifferent to you. The lecture halls smell of dust and ambition. Your professors speak of Kant and Hegel, of the limits of reason, of the categories that bind perception to the knowable world. You sit in the back row and take meticulous notes, and all the while a part of your mind is elsewhere; in a garret at the top of a house that should not exist, listening to music that should not be possible.</p>
