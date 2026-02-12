@@ -105,7 +105,7 @@ const ACT1_SCENES = {
   title: '{{if knows_street_name >= 1}}The Rue d\u2019Auseil{{else}}The Nameless Street{{/if}}',
   ambience: 'street',
   audio: [
-        { src: 'Film_Noir-traffic_distant_loop.ogg', volume: 0.1, loop: true },
+        { src: 'Film_Noir-traffic_distant_loop.ogg', volume: 0.03, loop: true },
         { src: 'Olde_Towne-church_bell.ogg', volume: 0.03, loop: true },
         { src: 'Olde_Towne-dogs_barking.ogg', volume: 0.05, loop: true }
       ],
