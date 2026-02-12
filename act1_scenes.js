@@ -288,7 +288,7 @@ const ACT1_SCENES = {
   audio: [
     { src: 'House_on_the_Hill-door_open.ogg', volume: 0.3, loop: false },
     { src: 'Bleakwater_Docks-footsteps_ambient_loop.ogg', volume: 0.4, loop: true },
-    { src: 'House_on_the_Hill-clock_loop.ogg', volume: 0.1, loop: true }
+    { src: 'House_on_the_Hill-clock_loop.ogg', volume: 0.04, loop: true }
   ],
   text: `<p>You set down your bag. The room accepts you the way a coat accepts a new owner \u2014 without enthusiasm, without objection. The bed is hard but not intolerable. The desk is steady. The window admits a grey light that will serve for reading, if you press close enough.</p>
 <p>You unpack what little you have. Books, mostly. Your notes from last term. A change of clothes. A pen and ink. No luxuries. You arrange the books on the desk and stand back to regard them.</p>
@@ -355,7 +355,7 @@ const ACT1_SCENES = {
   audio: [
     { src: 'House_on_the_Hill-wind_outside_loop.ogg', volume: 0.1, loop: true },
     { src: 'Bleakwater_Docks-footsteps_ambient_loop.ogg', volume: 0.2, loop: true },
-    { src: 'House_on_the_Hill-clock_loop.ogg', volume: 0.1, loop: true },
+    { src: 'House_on_the_Hill-clock_loop.ogg', volume: 0.05, loop: true },
     { src: 'House_on_the_Hill-house_rattle.ogg', volume: 0.05, loop: true }
   ],
   text: `<p>You are in bed. The sheets are rough, the mattress thin. Sleep, which should have come easily after so much walking, does not come at all. You lie in the dark and listen to the house.</p>
