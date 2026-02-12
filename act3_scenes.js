@@ -126,7 +126,7 @@ const ACT3_SCENES = {
         { src: 'Bleakwater_Docks-choral_tone_loop.ogg', volume: 0.1, loop: true },
         { src: 'Bleakwater_Docks-bent_tone_loop.ogg', volume: 0.2, loop: true },
         { src: 'Film_Noir-sting_orchestral.ogg', volume: 0.1, loop: false },
-        { src: '02_Pärt_Fratres_Violin.mp3', volume: 0.4, loop: true },
+        { src: '02_Part_Fratres_Violin.mp3', volume: 0.4, loop: true },
       ],
       paragraph: 205,
       effects: { dread: 1 },
@@ -147,7 +147,7 @@ const ACT3_SCENES = {
       label: 'B',
       text: 'Check on the other tenants first. They may need help.',
       audio: [
-        { src: '02_Pärt_Fratres_Violin.mp3', volume: 0.4, loop: true },
+        { src: '02_Part_Fratres_Violin.mp3', volume: 0.4, loop: true },
       ],
       paragraph: 206,
       effects: { knowledge: 1 },
@@ -193,11 +193,11 @@ const ACT3_SCENES = {
   title: 'The Garret Door',
   ambience: 'garret',
   audio: [
-    { src: '07_Pärt_Fratres_String_Quartet.mp3', volume: 0.4, loop: true },
+    { src: '07_Part_Fratres_String_Quartet.mp3', volume: 0.4, loop: true },
     { src: 'Bleakwater_Docks-bent_tone_loop.ogg', volume: 0.4, loop: true },
     { src: 'Bleakwater_Docks-choral_tone_loop.ogg', volume: 0.4, loop: true },
-    { src: '02_Pärt_Fratres_Violin.mp3', volume: 0.4, loop: true },
-    { src: '09_Pärt_Fratres_Cello.mp3', volume: 0.4, loop: true },
+    { src: '02_Part_Fratres_Violin.mp3', volume: 0.4, loop: true },
+    { src: '09_Part_Fratres_Cello.mp3', volume: 0.4, loop: true },
     { src: 'Film_Noir-sting_orchestral.ogg', volume: 0.1, loop: true },
   ],
   text: `<p>The garret door pulses with light. Cold, blue-white, leaking through the cracks in the frame and the gap beneath the threshold. The light moves. It brightens and dims with the rhythm of the music, breathing in time with the viol, and each pulse carries with it a pressure that you feel not in your ears but in the hollow spaces of your chest.</p>
@@ -397,7 +397,7 @@ const ACT3_SCENES = {
       audio: [
         { src: 'Bleakwater_Docks-bent_tone_loop.ogg', volume: 0.4, loop: true },
         { src: 'Bleakwater_Docks-choral_tone_loop.ogg', volume: 0.4, loop: true },
-        { src: '02_Pärt_Fratres_Violin.mp3', volume: 0.4, loop: true },
+        { src: '02_Part_Fratres_Violin.mp3', volume: 0.4, loop: true },
       ],
       paragraph: 217,
       condition: 'played_viol >= 1',
@@ -459,9 +459,9 @@ const ACT3_SCENES = {
   audio: [
         { src: 'Bleakwater_Docks-bent_tone_loop.ogg', volume: 0.4, loop: true },
         { src: 'Bleakwater_Docks-choral_tone_loop.ogg', volume: 0.4, loop: true },
-        { src: '02_Pärt_Fratres_Violin.mp3', volume: 0.4, loop: true },
-        { src: '07_Pärt_Fratres_String_Quartet.mp3', volume: 0.4, loop: true },
-        { src: '09_Pärt_Fratres_Cello.mp3', volume: 0.4, loop: true },
+        { src: '02_Part_Fratres_Violin.mp3', volume: 0.4, loop: true },
+        { src: '07_Part_Fratres_String_Quartet.mp3', volume: 0.4, loop: true },
+        { src: '09_Part_Fratres_Cello.mp3', volume: 0.4, loop: true },
       ],
   text: `<p>The two viols speak together. Zann's voice, thin and fading, carries the melody. Yours, rough and urgent, holds the bass line. The music that results is imperfect. It is also, somehow, more than either instrument could produce alone.</p>
 <p>The void pauses. The darkness at the window holds its position, neither advancing nor retreating, held in place by a wall of sound that is fragile and human and, for this one moment, sufficient.</p>

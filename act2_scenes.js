@@ -31,7 +31,7 @@ const ACT2_SCENES = {
   ambience: 'boarding_house',
   audio: [
     { src: 'Bleakwater_Docks-bent_tone_loop.ogg', volume: 0.4, loop: true },
-    { src: '07_Pärt_Fratres_String_Quartet.mp3', volume: 0.2, loop: false },
+    { src: '07_Part_Fratres_String_Quartet.mp3', volume: 0.2, loop: false },
   ],
   text: `<p>A week passes. Then two. The university term begins and you attend your lectures, take your notes, walk the long route from the campus back to the Rue d\u2019Auseil each evening. You have not yet found a shorter path. You are beginning to suspect there is none.</p>
 <p>The city is old and indifferent to you. The lecture halls smell of dust and ambition. Your professors speak of Kant and Hegel, of the limits of reason, of the categories that bind perception to the knowable world. You sit in the back row and take meticulous notes, and all the while a part of your mind is elsewhere; in a garret at the top of a house that should not exist, listening to music that should not be possible.</p>
@@ -379,8 +379,8 @@ const ACT2_SCENES = {
   title: 'The Performance',
   ambience: 'garret',
   audio: [
-    { src: '02_Pärt_Fratres_Violin.mp3', volume: 0.4, loop: true },
-    { src: '09_Pärt_Fratres_Cello.mp3', volume: 0.1, loop: false },
+    { src: '02_Part_Fratres_Violin.mp3', volume: 0.4, loop: true },
+    { src: '09_Part_Fratres_Cello.mp3', volume: 0.1, loop: false },
   ],
   text: `<p>Zann picks up the viol. He holds it for a moment without playing, cradling it against his chest the way a mother holds a child she is about to surrender. Then he positions it, tucks the scroll beneath his chin, raises the bow, and looks at you.</p>
 <p>His eyes ask a question: <em>Are you ready?</em></p>
@@ -398,7 +398,7 @@ const ACT2_SCENES = {
       label: 'A',
       text: 'Stay and listen \u2014 endure whatever comes.',
       audio: [
-        { src: '07_Pärt_Fratres_String_Quartet.mp3', volume: 0.4, loop: true },
+        { src: '07_Part_Fratres_String_Quartet.mp3', volume: 0.4, loop: true },
       ],
       paragraph: 117,
       effects: { heard_music: 1, dread: 1 },
@@ -715,7 +715,7 @@ const ACT2_SCENES = {
       audio: [
         { src: 'Bleakwater_Docks-choral_tone_loop.ogg', volume: 0.2, loop: true },
         { src: 'Bleakwater_Docks-bent_tone_loop.ogg', volume: 0.3, loop: true },
-        { src: '09_Pärt_Fratres_Cello.mp3', volume: 0.3, loop: false },
+        { src: '09_Part_Fratres_Cello.mp3', volume: 0.3, loop: false },
       ],
       paragraph: 131,
       effects: { knowledge: 1 },
@@ -774,8 +774,8 @@ const ACT2_SCENES = {
   title: 'What Answers',
   ambience: 'garret',
   audio: [
-    { src: '02_Pärt_Fratres_Violin.mp3', volume: 0.2, loop: false },
-    { src: '09_Pärt_Fratres_Cello.mp3', volume: 0.1, loop: false },
+    { src: '02_Part_Fratres_Violin.mp3', volume: 0.2, loop: false },
+    { src: '09_Part_Fratres_Cello.mp3', volume: 0.1, loop: false },
     { src: 'Bleakwater_Docks-bent_tone_loop.ogg', volume: 0.2, loop: true },
   ],
   text: `<p>It happens on a Thursday. You are in the garret, sitting in your chair, watching Zann play. The music tonight is different. More tentative. Zann is searching for something in the sound, a phrase or a frequency he cannot quite locate.</p>

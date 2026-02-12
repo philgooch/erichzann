@@ -510,7 +510,7 @@ const ACT1_SCENES = {
     { src: 'Bleakwater_Docks-bent_tone_loop.ogg', volume: 0.4, loop: true },
     { src: 'Bleakwater_Docks-dark_tone_loop.ogg', volume: 0.2, loop: true },
     { src: 'Bleakwater_Docks-choral_tone_loop.ogg', volume: 0.1, loop: true },
-    { src: '07_Pärt_Fratres_String_Quartet.mp3', volume: 0.3, loop: true },
+    { src: '07_Part_Fratres_String_Quartet.mp3', volume: 0.3, loop: true },
   ],
   text: `<p>It is past midnight. You cannot sleep. The music has started again, but tonight it is different \u2014 louder, more urgent, with a quality of desperation you have not heard before. The viol is not being played but <em>driven</em>, forced through passages it was never built to contain.</p>
 <p>You feel compelled to rise. You put on your coat.</p>
