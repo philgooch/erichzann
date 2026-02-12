@@ -1,0 +1,655 @@
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  /* German Expressionist palette - stark, unsettling, high-contrast */
+  --parchment:#e8e0d0;--parchment-dark:#c8bca4;--parchment-light:#f2ece0;
+  --ink:#0a0a0c;--ink-light:#3a3640;--gold:#9a8a5a;--gold-bright:#b8a870;
+  --gold-dim:#6a5e3e;--bg:#040406;--bg-panel:#0e0c10;
+  --dialog-bg:#d8d0bc;--thought-color:#2a2430;
+  /* Expressionist lighting - harsh, angular, not warm */
+  --candle-glow:rgba(160,140,80,0.12);--candle-glow2:rgba(140,120,60,0.06);
+  /* Sickly accent - absinthe/jaundice undertone */
+  --accent-sick:rgba(140,150,60,0.08);--accent-sick-border:#6a6e30;
+  /* Void - deeper, colder */
+  --void-color:#06001a;--void-glow:rgba(60,0,100,0.18);
+  /* Gesture/note boxes */
+  --gesture-bg:linear-gradient(135deg,#c8c0a8 0%,#b0a888 100%);
+  --gesture-border:#5a5438;--gesture-icon-color:#3a3420;
+}
+html{font-size:17px}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:'IM Fell English',Georgia,serif;
+  line-height:1.75;min-height:100vh;
+  /* Deep black with barely perceptible cold gradient */
+  background-image:radial-gradient(ellipse at 50% 0%,#0c0a14 0%,var(--bg) 70%);
+}
+
+/* === PARCHMENT SCROLL - Expressionist panel === */
+#parchment-wrap{
+  max-width:720px;margin:0 auto;padding:0 1em;
+  min-height:100vh;position:relative;
+}
+#parchment{
+  background:linear-gradient(180deg,var(--parchment-light) 0%,var(--parchment) 15%,var(--parchment-dark) 50%,var(--parchment) 85%,var(--parchment-light) 100%);
+  padding:2.5em 2.5em 3em;margin-top:0;position:relative;
+  /* Sharp borders - angular, not decorative */
+  border-left:4px solid #1a1818;border-right:4px solid #1a1818;
+  /* Harsh chiaroscuro - deep angular shadows, minimal warmth */
+  box-shadow:
+    0 0 40px var(--candle-glow),0 0 100px var(--candle-glow2),
+    inset 0 0 80px rgba(0,0,0,0.06),
+    -12px 0 20px rgba(0,0,0,0.5),12px 0 20px rgba(0,0,0,0.5),
+    -3px 0 0 #2a2420,3px 0 0 #2a2420;
+  animation:gaslight 6s ease-in-out infinite alternate;
+}
+@keyframes gaslight{
+  0%{box-shadow:0 0 40px var(--candle-glow),0 0 100px var(--candle-glow2),inset 0 0 80px rgba(0,0,0,0.06),-12px 0 20px rgba(0,0,0,0.5),12px 0 20px rgba(0,0,0,0.5),-3px 0 0 #2a2420,3px 0 0 #2a2420}
+  30%{box-shadow:0 0 30px rgba(140,120,60,0.10),0 0 80px rgba(120,100,40,0.04),inset 0 0 80px rgba(0,0,0,0.08),-12px 0 20px rgba(0,0,0,0.55),12px 0 20px rgba(0,0,0,0.55),-3px 0 0 #2a2420,3px 0 0 #2a2420}
+  60%{box-shadow:0 0 50px rgba(160,140,70,0.14),0 0 110px rgba(140,120,50,0.07),inset 0 0 80px rgba(0,0,0,0.04),-12px 0 20px rgba(0,0,0,0.45),12px 0 20px rgba(0,0,0,0.45),-3px 0 0 #2a2420,3px 0 0 #2a2420}
+  100%{box-shadow:0 0 35px var(--candle-glow),0 0 90px var(--candle-glow2),inset 0 0 80px rgba(0,0,0,0.07),-12px 0 20px rgba(0,0,0,0.5),12px 0 20px rgba(0,0,0,0.5),-3px 0 0 #2a2420,3px 0 0 #2a2420}
+}
+
+/* Woodcut grain texture overlay - coarser than parchment, like linocut */
+#parchment::before{
+  content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:0.7;
+  mix-blend-mode:multiply;
+}
+/* Diagonal scratch lines - woodcut/etching effect */
+#parchment::after{
+  content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:repeating-linear-gradient(
+    -45deg,
+    transparent,transparent 3px,
+    rgba(0,0,0,0.012) 3px,rgba(0,0,0,0.012) 4px
+  );
+  pointer-events:none;z-index:0;opacity:0.5;
+}
+#parchment>*{position:relative;z-index:1}
+
+/* === VOID OVERLAY - activates when dread is high === */
+#parchment.void-touched{
+  animation:gaslight 6s ease-in-out infinite alternate, voidPulse 7s ease-in-out infinite;
+  border-color:#1a0a20;
+}
+@keyframes voidPulse{
+  0%,100%{border-color:#1a1818}
+  50%{border-color:#2a0a30}
+}
+#parchment.void-touched::after{
+  background:
+    repeating-linear-gradient(-45deg,transparent,transparent 3px,rgba(0,0,0,0.012) 3px,rgba(0,0,0,0.012) 4px),
+    radial-gradient(ellipse at 50% 0%,transparent 50%,var(--void-glow) 100%);
+  opacity:1;
+  animation:voidCreep 7s ease-in-out infinite alternate;
+}
+@keyframes voidCreep{
+  0%{opacity:0.5}
+  100%{opacity:1}
+}
+
+/* === STATS BAR - stark, industrial === */
+#stats-bar{
+  position:sticky;top:0;z-index:200;
+  background:linear-gradient(180deg,#0e0c10 0%,#060408 100%);
+  border-bottom:3px solid #1a1818;
+  padding:0.5em 1.5em;display:none;
+  justify-content:center;gap:2em;flex-wrap:wrap;
+  font-family:'Cinzel',serif;font-size:0.75rem;
+  color:var(--gold-bright);letter-spacing:0.12em;
+  text-transform:uppercase;
+  box-shadow:0 4px 20px rgba(0,0,0,0.7);
+}
+#stats-bar.visible{display:flex}
+.stat-item{display:flex;align-items:center;gap:0.4em}
+.stat-label{opacity:0.6;font-weight:400}
+.stat-val{font-weight:700;min-width:1.5em;text-align:center;transition:all 0.3s}
+.stat-val.flash{color:#e8e0d0;text-shadow:0 0 10px var(--gold-bright);transform:scale(1.3)}
+
+/* === TYPOGRAPHY === */
+#content{opacity:1;transition:opacity 0.6s ease}
+#content.fading{opacity:0}
+#content p{margin-bottom:1em;text-indent:0;text-align:left}
+#content p+p{text-indent:1.5em}
+.scene-title{
+  font-family:'Cinzel',serif;font-size:1.4rem;font-weight:700;
+  color:var(--ink);text-align:center;margin:0.8em 0 0.3em;
+  letter-spacing:0.12em;text-transform:uppercase;
+}
+.scene-subtitle{
+  font-family:'Cinzel',serif;font-size:0.8rem;
+  color:var(--gold-dim);text-align:center;margin-bottom:1.5em;
+  letter-spacing:0.25em;text-transform:uppercase;
+}
+.para-num{
+  font-family:'Cinzel',serif;font-weight:700;font-size:1.1rem;
+  color:var(--gold-dim);margin-right:0.3em;
+}
+.scene-break{
+  text-align:center;margin:1.5em 0;color:var(--ink-light);
+  font-size:1.2em;letter-spacing:0.5em;
+}
+.scene-break::after{content:'\2666 \2666 \2666'}
+
+/* === DIALOG BOXES - Silent film intertitle cards === */
+.dialog-box{
+  margin:1.2em 0;
+  border:3px solid var(--ink);border-radius:0;
+  background:linear-gradient(135deg,var(--dialog-bg) 0%,#c4b898 100%);
+  overflow:visible;position:relative;
+  box-shadow:
+    4px 4px 0 rgba(0,0,0,0.3),
+    inset 0 1px 2px rgba(255,255,255,0.15);
+}
+.dialog-speaker{
+  font-family:'Cinzel',serif;font-size:0.7rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.18em;
+  color:var(--parchment-light);background:var(--ink);
+  padding:0.15em 0.8em 0.2em;display:inline-block;
+  position:absolute;top:-0.85em;left:10px;
+  border-radius:0;border:1px solid #2a2420;
+  box-shadow:2px 2px 0 rgba(0,0,0,0.4);
+}
+.dialog-text{
+  padding:1em 1.2em 0.8em;font-style:italic;
+  color:var(--ink);line-height:1.65;
+}
+.dialog-text::before{content:'\201C'}
+.dialog-text::after{content:'\201D'}
+
+/* === GESTURE BOXES (Zann's mute communication) === */
+.dialog-box.gesture-box{
+  border:3px solid var(--gesture-border);
+  background:var(--gesture-bg);
+  outline:1px solid var(--gesture-border);
+  outline-offset:3px;
+  box-shadow:4px 4px 0 rgba(0,0,0,0.2);
+}
+.gesture-box .dialog-speaker{
+  background:var(--gesture-icon-color);
+  border-color:var(--gesture-border);
+  font-size:0.65rem;
+  letter-spacing:0.12em;
+}
+.gesture-box .dialog-text{
+  font-style:italic;
+  color:#2a2418;
+}
+.gesture-box .dialog-text::before{content:'\2014\00a0'}
+.gesture-box .dialog-text::after{content:'\00a0\2014'}
+
+/* === NOTE BOXES (Zann's written notes) === */
+.dialog-box.note-box{
+  border:2px solid #5a5040;
+  border-style:solid;
+  background:linear-gradient(135deg,#e0d8c0 0%,#d0c4a0 100%);
+  box-shadow:3px 3px 0 rgba(0,0,0,0.15);
+  transform:rotate(-0.4deg);
+}
+.note-box .dialog-speaker{
+  background:#2a2418;
+  border-color:#5a5040;
+  font-size:0.6rem;
+}
+.note-box .dialog-text{
+  font-style:italic;
+  color:#1a1810;
+  font-size:0.95rem;
+  letter-spacing:0.02em;
+}
+.note-box .dialog-text::before{content:''}
+.note-box .dialog-text::after{content:''}
+
+/* === TYPEWRITER EFFECT === */
+.dialog-text.typing{min-height:1.4em}
+.dialog-text.typing::after{
+  content:'\258C' !important;font-style:normal;color:var(--ink);
+  animation:cursor-blink 0.55s step-end infinite;
+}
+@keyframes cursor-blink{50%{opacity:0}}
+.dialog-box{opacity:0;transform:translateY(6px);transition:opacity 0.3s,transform 0.3s}
+.dialog-box.typed{opacity:1;transform:translateY(0)}
+.dialog-box.note-box.typed{transform:rotate(-0.4deg)}
+
+/* === PARAGRAPH REVEAL === */
+#content p,#content .skill-result,
+.outcome-section p,.outcome-section .skill-result{
+  transition:opacity 0.5s ease,transform 0.5s ease;
+}
+#content p.thought,.outcome-section p.thought{
+  transition:opacity 0.8s ease,transform 0.8s ease;
+}
+.reveal-hidden{
+  opacity:0 !important;transform:translateY(8px) !important;
+}
+.reveal-instant{
+  transition:none !important;
+}
+/* === REVEAL HINT === */
+.reveal-indicator{
+  position:absolute;
+  right:-1.6em;top:0;
+  font-size:1.3em;
+  color:var(--ink-light);
+  opacity:0;
+  transition:opacity 0.3s ease;
+  cursor:pointer;
+  user-select:none;
+}
+.reveal-indicator.visible{
+  opacity:0.5;
+  animation:indicatorPulse 1.8s ease-in-out infinite;
+}
+.reveal-indicator:hover{
+  opacity:1 !important;
+}
+@keyframes indicatorPulse{
+  0%,100%{opacity:0.4;transform:scale(1)}
+  50%{opacity:0.7;transform:scale(1.1)}
+}
+#content p,
+.outcome-section p{
+  position:relative;
+}
+#content.reveal-active p:not(.reveal-hidden),
+#content.reveal-active .outcome-section p:not(.reveal-hidden){
+  cursor:pointer;
+}
+
+/* === INTERNAL THOUGHTS === */
+.thought{
+  font-style:italic;color:var(--thought-color);
+  border-left:4px solid var(--ink);padding-left:1em;
+  margin:1em 0 1em 0.5em;line-height:1.65;opacity:0.88;
+}
+
+/* === CHOICES - angular, stark === */
+#choices{margin-top:2em;border-top:2px solid var(--ink);padding-top:1.5em}
+.choices-header{
+  font-family:'Cinzel',serif;font-size:0.8rem;text-align:center;
+  color:var(--ink-light);letter-spacing:0.2em;text-transform:uppercase;
+  margin-bottom:1em;
+}
+.choice-btn{
+  display:block;width:100%;padding:0.7em 1em 0.7em 2.8em;
+  margin:0.6em 0;background:transparent;
+  border:2px solid rgba(10,10,12,0.25);border-radius:0;
+  font-family:'IM Fell English',serif;font-size:1rem;
+  color:var(--ink);cursor:pointer;text-align:left;
+  transition:all 0.3s ease;position:relative;line-height:1.5;
+}
+.choice-btn:hover{
+  background:rgba(0,0,0,0.06);border-color:var(--ink);
+  box-shadow:3px 3px 0 rgba(0,0,0,0.15);transform:translateX(4px);
+}
+.choice-btn:active{transform:translateX(2px);background:rgba(0,0,0,0.08)}
+.choice-label{
+  position:absolute;left:0.8em;top:50%;transform:translateY(-50%);
+  font-family:'Cinzel',serif;font-weight:700;font-size:0.85rem;
+  color:var(--ink);
+}
+.choice-btn.disabled{opacity:0.35;pointer-events:none}
+
+/* === CONTINUE BUTTON - angular, industrial === */
+.continue-btn{
+  display:block;margin:2em auto 0;padding:0.6em 2em;
+  background:var(--bg-panel);color:var(--parchment);
+  border:2px solid #2a2420;border-radius:0;
+  font-family:'Cinzel',serif;font-size:0.85rem;
+  letter-spacing:0.1em;cursor:pointer;transition:all 0.3s;
+}
+.continue-btn:hover{
+  background:#1a1620;border-color:var(--parchment-dark);
+  box-shadow:3px 3px 0 rgba(0,0,0,0.4);
+}
+
+/* === OUTCOME TEXT === */
+.outcome-section{
+  margin-top:1.5em;padding-top:1em;
+  border-top:2px dashed var(--ink-light);
+  animation:fadeInUp 0.8s ease;
+}
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.outcome-section p{margin-bottom:1em}
+.outcome-section p+p{text-indent:1.5em}
+
+/* === SKILL TEST RESULT === */
+.skill-result{
+  margin:1em 0;padding:0.8em 1em;
+  border:3px solid var(--ink);border-radius:0;
+  background:rgba(10,10,12,0.06);text-align:center;
+  font-family:'Cinzel',serif;font-size:0.85rem;
+  letter-spacing:0.05em;
+}
+.skill-result.success{border-color:#3a5a1a;color:#2a4a10}
+.skill-result.failure{border-color:#5a1a1a;color:#4a1010}
+
+/* === DICE OVERLAY - Expressionist chiaroscuro === */
+#dice-overlay{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(4,4,6,0.92);z-index:500;
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+}
+#dice-overlay.visible{display:flex}
+.dice-title{
+  font-family:'Cinzel',serif;font-size:1.1rem;color:var(--parchment);
+  letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1.5em;
+}
+.dice-container{display:flex;gap:1.5em;margin:1em 0;flex-wrap:wrap;justify-content:center}
+.dice-container.four-dice{gap:1em}
+.dice-container.four-dice .die{width:60px;height:60px;font-size:1.7rem}
+.die{
+  width:68px;height:68px;background:var(--parchment);
+  border-radius:0;display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel',serif;font-size:2rem;font-weight:700;
+  color:var(--ink);
+  border:3px solid var(--ink);
+  box-shadow:4px 4px 0 rgba(0,0,0,0.6);
+  transition:transform 0.1s;
+}
+.die.rolling{animation:diceShake 0.1s infinite}
+@keyframes diceShake{
+  0%{transform:rotate(0deg) scale(1)}
+  25%{transform:rotate(8deg) scale(1.05)}
+  50%{transform:rotate(-5deg) scale(0.95)}
+  75%{transform:rotate(6deg) scale(1.02)}
+  100%{transform:rotate(-3deg) scale(1)}
+}
+.dice-result{
+  font-family:'Cinzel',serif;font-size:0.9rem;color:var(--parchment);
+  margin-top:1.5em;text-align:center;line-height:1.8;opacity:0;
+  transition:opacity 0.5s;
+}
+.dice-result.visible{opacity:1}
+.dice-result .success-text{color:#8aaa5a}
+.dice-result .fail-text{color:#aa5a5a}
+.dice-continue{
+  margin-top:1.5em;padding:0.5em 1.8em;background:transparent;
+  border:2px solid #2a2420;border-radius:0;
+  color:var(--parchment);font-family:'Cinzel',serif;font-size:0.8rem;
+  cursor:pointer;opacity:0;transition:opacity 0.5s;letter-spacing:0.1em;
+}
+.dice-continue.visible{opacity:1}
+.dice-continue:hover{background:rgba(232,224,208,0.08);border-color:var(--parchment-dark)}
+
+/* ======================================================
+   TITLE SCREEN - Silent film intertitle aesthetic
+   Sharp borders, high contrast, angular framing
+   ====================================================== */
+#title-screen{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:flex-start;text-align:center;
+  padding:1.5em 1em 1em;
+}
+.title-main{
+  font-family:'Cinzel Decorative',serif;font-size:2.6rem;
+  color:var(--ink);letter-spacing:0.08em;
+  text-shadow:2px 2px 0 rgba(0,0,0,0.15);
+  margin-bottom:0.1em;line-height:1.2;
+}
+.title-sub{
+  font-family:'Cinzel',serif;font-size:0.85rem;
+  color:var(--ink-light);letter-spacing:0.3em;text-transform:uppercase;
+  margin-bottom:0.2em;
+}
+.title-tagline{
+  font-family:'IM Fell English',serif;font-style:italic;
+  color:var(--ink-light);font-size:0.95rem;margin:0.5em 0 0.8em;
+}
+.title-flourish{
+  color:var(--ink-light);font-size:1.2em;letter-spacing:0.8em;
+  margin:0.3em 0 0.5em;opacity:0.4;
+}
+.title-credit{
+  font-family:'IM Fell English',serif;font-size:0.8rem;
+  color:var(--ink-light);opacity:0.5;margin-bottom:1em;
+  font-style:italic;letter-spacing:0.05em;
+}
+.begin-btn{
+  display:block;margin:0 auto;padding:0.7em 2.5em;
+  background:var(--ink);color:var(--parchment);
+  border:3px solid var(--ink);border-radius:0;
+  font-family:'Cinzel',serif;font-size:0.9rem;
+  letter-spacing:0.12em;cursor:pointer;transition:all 0.3s;
+  text-transform:uppercase;
+  box-shadow:3px 3px 0 rgba(0,0,0,0.2);
+}
+.begin-btn:hover{
+  background:#2a2430;border-color:var(--ink);
+  box-shadow:4px 4px 0 rgba(0,0,0,0.3);
+}
+
+/* === DRAMATIS PERSONAE - playbill/programme style === */
+.dramatis-section{
+  margin:1em auto;max-width:480px;text-align:left;
+  border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);
+  padding:1.5em 0;
+}
+.dramatis-header{
+  font-family:'Cinzel',serif;font-size:0.75rem;font-weight:700;
+  color:var(--ink);letter-spacing:0.3em;text-transform:uppercase;
+  text-align:center;margin-bottom:1.2em;
+}
+.dramatis-list{
+  list-style:none;margin:0;padding:0;
+}
+.dramatis-list li{
+  margin:0.6em 0;line-height:1.5;font-size:0.9rem;
+}
+.dramatis-name{
+  font-family:'Cinzel',serif;font-weight:600;font-size:0.85rem;
+  color:var(--ink);letter-spacing:0.08em;
+}
+.dramatis-desc{
+  font-family:'IM Fell English',serif;font-style:italic;
+  color:var(--ink-light);font-size:0.85rem;
+}
+.dramatis-minor{
+  margin-top:1em;font-style:italic;font-size:0.8rem;
+  color:var(--ink-light);text-align:center;line-height:1.6;
+}
+.scene-header{
+  font-family:'Cinzel',serif;font-size:0.75rem;font-weight:700;
+  color:var(--ink);letter-spacing:0.3em;text-transform:uppercase;
+  text-align:center;margin:1.5em 0 0.8em;
+}
+.scene-description{
+  font-family:'IM Fell English',serif;font-style:italic;
+  color:var(--ink-light);font-size:0.95rem;text-align:center;
+  line-height:1.6;max-width:400px;margin:0 auto;
+}
+
+/* === CHARACTER CREATION === */
+#chargen-screen{display:none;padding:2em 0}
+.chargen-title{
+  font-family:'Cinzel',serif;font-size:1.3rem;color:var(--ink);
+  text-align:center;letter-spacing:0.15em;margin-bottom:1.5em;
+}
+.stat-roll-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.7em 0;border-bottom:2px dotted var(--ink-light);
+  font-family:'Cinzel',serif;font-size:0.95rem;color:var(--ink);
+}
+.stat-roll-label{letter-spacing:0.1em;min-width:120px}
+.stat-roll-formula{font-size:0.75rem;color:var(--ink-light);flex:1;text-align:center}
+.stat-roll-val{
+  min-width:2em;text-align:center;font-weight:700;font-size:1.2rem;
+  color:var(--ink);
+}
+.roll-btn{
+  padding:0.3em 1em;background:var(--ink);color:var(--parchment);
+  border:2px solid var(--ink);border-radius:0;
+  font-family:'Cinzel',serif;font-size:0.7rem;cursor:pointer;
+  letter-spacing:0.1em;transition:all 0.3s;
+}
+.roll-btn:hover{background:#2a2430;border-color:var(--ink)}
+.roll-btn:disabled{opacity:0.25;cursor:default}
+.chargen-desc{
+  margin-top:1.5em;font-size:0.9rem;color:var(--ink-light);
+  text-align:center;font-style:italic;line-height:1.6;
+}
+.adventure-btn{
+  display:block;margin:2em auto 0;padding:0.7em 2.5em;
+  background:var(--ink);color:var(--parchment);
+  border:3px solid var(--ink);border-radius:0;
+  font-family:'Cinzel',serif;font-size:0.9rem;
+  letter-spacing:0.12em;cursor:pointer;transition:all 0.3s;
+  text-transform:uppercase;opacity:0.25;pointer-events:none;
+  box-shadow:3px 3px 0 rgba(0,0,0,0.2);
+}
+.adventure-btn.ready{opacity:1;pointer-events:auto}
+.adventure-btn.ready:hover{
+  background:#2a2430;
+  box-shadow:4px 4px 0 rgba(0,0,0,0.3);
+}
+
+/* === ACT TITLE - like a silent film chapter card === */
+.act-title-screen{
+  min-height:40vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:3em 1em;animation:fadeInUp 1.5s ease;
+}
+.act-number{
+  font-family:'Cinzel',serif;font-size:0.85rem;
+  color:var(--ink-light);letter-spacing:0.35em;text-transform:uppercase;
+  margin-bottom:0.5em;
+}
+.act-name{
+  font-family:'Cinzel Decorative',serif;font-size:2rem;
+  color:var(--ink);letter-spacing:0.1em;margin-bottom:1em;
+  text-shadow:1px 1px 0 rgba(0,0,0,0.1);
+}
+
+/* === END OF ACT === */
+.end-act{
+  text-align:center;padding:2em 0;
+  animation:fadeInUp 1.2s ease;
+}
+.end-act h2{
+  font-family:'Cinzel Decorative',serif;font-size:1.5rem;
+  color:var(--ink);margin-bottom:1em;
+}
+.end-act .stats-summary{
+  font-family:'Cinzel',serif;font-size:0.8rem;
+  color:var(--ink-light);line-height:2;margin:1.5em 0;
+  letter-spacing:0.05em;
+}
+
+/* === AUDIO TOGGLE === */
+#audio-toggle{
+  position:fixed;bottom:1em;right:1em;z-index:300;
+  width:40px;height:40px;border-radius:0;
+  background:var(--ink);border:2px solid #2a2420;
+  color:var(--parchment);font-size:1.1em;cursor:pointer;
+  display:none;align-items:center;justify-content:center;
+  transition:all 0.3s;opacity:0.5;
+}
+#audio-toggle:hover{opacity:1;border-color:var(--parchment-dark)}
+#audio-toggle.visible{display:flex}
+
+/* === SAVE BUTTON === */
+#save-btn{
+  position:absolute;right:1.5em;top:50%;transform:translateY(-50%);
+  padding:0.3em 0.8em;
+  background:transparent;border:2px solid #2a2420;border-radius:0;
+  color:var(--parchment);font-family:'Cinzel',serif;font-size:0.65rem;
+  letter-spacing:0.08em;cursor:pointer;transition:all 0.4s ease;
+  white-space:nowrap;
+}
+#save-btn:hover{background:rgba(232,224,208,0.08);border-color:var(--parchment-dark)}
+#save-btn.saved{
+  color:#8aaa5a;border-color:#4a6a2a;
+  background:rgba(70,110,30,0.1);
+}
+
+/* === CONTINUE SAVE BUTTON (TITLE SCREEN) === */
+.continue-save-btn{
+  margin-top:0.8em !important;
+  border-color:var(--ink) !important;
+  animation:softPulse 2.5s ease-in-out infinite;
+}
+@keyframes softPulse{
+  0%,100%{box-shadow:3px 3px 0 rgba(0,0,0,0.2)}
+  50%{box-shadow:4px 4px 0 rgba(0,0,0,0.35),0 0 15px rgba(140,140,80,0.1)}
+}
+
+/* === FOOTER === */
+#site-footer{
+  text-align:center;
+  padding:2em 1em 1.5em;
+  font-family:'IM Fell English',Georgia,serif;
+  font-size:0.8rem;
+  color:#d0d0d0;
+  opacity:0.6;
+  letter-spacing:0.02em;
+}
+#site-footer a{
+  color:var(--gold-bright);
+  text-decoration:none;
+  transition:color 0.3s;
+}
+#site-footer a:hover{
+  color:var(--parchment);
+  text-decoration:underline;
+}
+
+/* === RESPONSIVE === */
+@media(max-width:600px){
+  html{font-size:17px}
+  #parchment-wrap{padding:0}
+  #parchment{
+    padding:1.5em 1.2em 2em;
+    border-left:none;border-right:none;
+    box-shadow:0 0 40px var(--candle-glow),0 0 100px var(--candle-glow2),
+      inset 0 0 60px rgba(0,0,0,0.06);
+    animation:gaslightMobile 6s ease-in-out infinite alternate;
+  }
+  .title-main{font-size:2.2rem}
+  .act-name{font-size:1.5rem}
+  #stats-bar{gap:1em;font-size:0.7rem;padding:0.4em 0.8em}
+  #save-btn{font-size:0.6rem;padding:0.25em 0.6em;right:0.8em}
+  .choice-btn{padding:0.6em 0.8em 0.6em 2.4em;font-size:0.95rem}
+  .dialog-text{padding:0.8em 1em 0.6em}
+  .thought{margin-left:0.2em;padding-left:0.8em}
+  .begin-btn,.adventure-btn,.continue-save-btn{
+    font-size:0.8rem;padding:0.6em 1.5em;
+  }
+  #title-screen{padding:1.5em 0.3em 1em}
+  .note-box .dialog-text{font-size:0.9rem}
+  .gesture-box .dialog-text{padding:0.8em 1em 0.6em}
+  .dice-container.four-dice{gap:0.8em}
+  .dice-container.four-dice .die{width:54px;height:54px;font-size:1.5rem}
+}
+/* Extra-small phones (iPhone SE, etc.) */
+@media(max-width:400px){
+  html{font-size:18px}
+  #parchment{padding:1.2em 1em 1.8em}
+  .title-main{font-size:1.9rem}
+  .act-name{font-size:1.3rem}
+  .scene-title{font-size:1.2rem}
+  .dialog-speaker{font-size:0.65rem;padding:0.12em 0.5em 0.15em}
+  .dialog-text{padding:0.7em 0.8em 0.5em}
+  .choice-btn{padding:0.6em 0.7em 0.6em 2.2em;font-size:1rem}
+  .choice-label{left:0.6em}
+  .thought{margin-left:0;padding-left:0.7em}
+  .dramatis-section{padding:1em 0}
+  .dramatis-list li{font-size:0.95rem}
+  .dramatis-name{font-size:0.9rem}
+  #stats-bar{gap:0.6em;font-size:0.65rem;padding:0.35em 0.5em}
+  #save-btn{right:0.5em}
+  .reveal-indicator{right:-1.2em}
+  .note-box .dialog-text{font-size:0.88rem}
+  .gesture-box .dialog-speaker{font-size:0.6rem}
+  .dice-container.four-dice{gap:0.6em}
+  .dice-container.four-dice .die{width:48px;height:48px;font-size:1.4rem}
+}
+@keyframes gaslightMobile{
+  0%{box-shadow:0 0 40px var(--candle-glow),0 0 100px var(--candle-glow2),inset 0 0 60px rgba(0,0,0,0.06)}
+  30%{box-shadow:0 0 30px rgba(140,120,60,0.10),0 0 80px rgba(120,100,40,0.04),inset 0 0 60px rgba(0,0,0,0.08)}
+  60%{box-shadow:0 0 50px rgba(160,140,70,0.14),0 0 110px rgba(140,120,50,0.07),inset 0 0 60px rgba(0,0,0,0.04)}
+  100%{box-shadow:0 0 35px var(--candle-glow),0 0 90px var(--candle-glow2),inset 0 0 60px rgba(0,0,0,0.07)}
+}

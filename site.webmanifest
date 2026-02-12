@@ -1,0 +1,26 @@
+{
+  "name": "The Music of Erich Zann: An Interactive Audio Drama",
+  "short_name": "Erich Zann",
+  "description": "An interactive adaptation of H.P. Lovecraft's tale of cosmic horror.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#040406",
+  "theme_color": "#08060c",
+  "icons": [
+    {
+      "src": "favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

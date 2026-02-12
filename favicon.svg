@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="void" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#1a0030"/>
+      <stop offset="60%" stop-color="#08060c"/>
+      <stop offset="100%" stop-color="#040406"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="40%">
+      <stop offset="0%" stop-color="rgba(160,140,80,0.35)"/>
+      <stop offset="100%" stop-color="rgba(160,140,80,0)"/>
+    </radialGradient>
+    <linearGradient id="viol-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b8a870"/>
+      <stop offset="50%" stop-color="#9a8a5a"/>
+      <stop offset="100%" stop-color="#6a5e3e"/>
+    </linearGradient>
+    <linearGradient id="string-shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8e0d0"/>
+      <stop offset="100%" stop-color="#9a8a5a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="64" fill="url(#void)"/>
+
+  <!-- Subtle cosmic glow behind viol -->
+  <circle cx="256" cy="230" r="180" fill="url(#glow)"/>
+
+  <!-- Viol body - stylized f-hole silhouette -->
+  <!-- Neck -->
+  <rect x="244" y="68" width="24" height="130" rx="4" fill="url(#viol-body)" opacity="0.95"/>
+
+  <!-- Pegbox -->
+  <rect x="240" y="50" width="32" height="30" rx="6" fill="#6a5e3e"/>
+  <rect x="248" y="42" width="16" height="16" rx="8" fill="#9a8a5a"/>
+
+  <!-- Upper bout -->
+  <ellipse cx="256" cy="220" rx="72" ry="50" fill="url(#viol-body)" opacity="0.95"/>
+
+  <!-- Waist (cutaway) -->
+  <ellipse cx="256" cy="265" rx="52" ry="22" fill="url(#void)"/>
+  <ellipse cx="256" cy="265" rx="50" ry="20" fill="url(#viol-body)" opacity="0.85"/>
+
+  <!-- Lower bout -->
+  <ellipse cx="256" cy="320" rx="82" ry="62" fill="url(#viol-body)" opacity="0.95"/>
+
+  <!-- Tailpiece -->
+  <rect x="248" y="370" width="16" height="32" rx="3" fill="#6a5e3e"/>
+
+  <!-- F-holes -->
+  <text x="222" y="300" font-family="serif" font-size="72" fill="#040406" opacity="0.7" transform="rotate(-8, 222, 280)">𝑓</text>
+  <text x="268" y="300" font-family="serif" font-size="72" fill="#040406" opacity="0.7" transform="rotate(8, 288, 280)">𝑓</text>
+
+  <!-- Strings -->
+  <line x1="247" y1="80" x2="243" y2="390" stroke="url(#string-shine)" stroke-width="1.5" opacity="0.7"/>
+  <line x1="253" y1="80" x2="251" y2="390" stroke="url(#string-shine)" stroke-width="1.5" opacity="0.8"/>
+  <line x1="259" y1="80" x2="261" y2="390" stroke="url(#string-shine)" stroke-width="1.5" opacity="0.8"/>
+  <line x1="265" y1="80" x2="269" y2="390" stroke="url(#string-shine)" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- Bridge -->
+  <rect x="236" y="300" width="40" height="5" rx="2" fill="#6a5e3e"/>
+
+  <!-- Cosmic void tendrils emerging from behind -->
+  <path d="M120,420 Q80,350 100,260 Q110,200 140,180" stroke="rgba(60,0,100,0.3)" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M392,420 Q420,350 400,260 Q390,200 370,180" stroke="rgba(60,0,100,0.3)" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M90,460 Q60,380 80,300 Q90,240 120,200" stroke="rgba(60,0,100,0.2)" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M422,460 Q450,380 430,300 Q420,240 390,200" stroke="rgba(60,0,100,0.2)" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Stars / cosmic dots -->
+  <circle cx="100" cy="100" r="2" fill="#e8e0d0" opacity="0.5"/>
+  <circle cx="400" cy="80" r="1.5" fill="#e8e0d0" opacity="0.4"/>
+  <circle cx="80" cy="200" r="1" fill="#e8e0d0" opacity="0.3"/>
+  <circle cx="430" cy="170" r="1.5" fill="#e8e0d0" opacity="0.35"/>
+  <circle cx="150" cy="60" r="1" fill="#e8e0d0" opacity="0.3"/>
+  <circle cx="370" cy="50" r="1.5" fill="#e8e0d0" opacity="0.4"/>
+  <circle cx="440" cy="300" r="1" fill="#e8e0d0" opacity="0.25"/>
+  <circle cx="70" cy="340" r="1.5" fill="#e8e0d0" opacity="0.3"/>
+
+  <!-- Subtle eldritch eye hint in upper area -->
+  <ellipse cx="256" cy="108" rx="14" ry="6" fill="none" stroke="rgba(60,0,100,0.25)" stroke-width="1.5"/>
+  <circle cx="256" cy="108" r="3" fill="rgba(100,0,160,0.3)"/>
+</svg>

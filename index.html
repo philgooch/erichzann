@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Music of Erich Zann: An Interactive Audio Drama</title>
+
+<!-- Primary Meta Tags -->
+<meta name="title" content="The Music of Erich Zann: An Interactive Audio Drama">
+<meta name="description" content="An interactive adaptation of H.P. Lovecraft's tale of cosmic horror. Play as a student drawn into the mystery of an old mute viol player whose nightly music holds back something beyond comprehension. Five possible endings.">
+<meta name="keywords" content="interactive fiction, gamebook, lovecraft, cosmic horror, choose your own adventure, text adventure, erich zann, audio drama">
+<meta name="robots" content="index, follow">
+<meta name="language" content="English">
+<meta name="author" content="After H.P. Lovecraft">
+<meta name="theme-color" content="#08060c">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://musicoferichzann.com/">
+<meta property="og:title" content="The Music of Erich Zann: An Interactive Audio Drama">
+<meta property="og:description" content="An interactive adaptation of H.P. Lovecraft's tale of cosmic horror. Play as a student drawn into the mystery of an old mute viol player whose nightly music holds back something beyond comprehension. Five possible endings.">
+<meta property="og:image" content="https://musicoferichzann.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Music of Erich Zann - a golden viol against a cosmic void, with the tagline: An Interactive Audio Drama">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="The Music of Erich Zann">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://musicoferichzann.com/">
+<meta name="twitter:title" content="The Music of Erich Zann: An Interactive Audio Drama">
+<meta name="twitter:description" content="An interactive Lovecraft adaptation. Five endings. Three stats. One eldritch truth. Play as a student drawn into the mystery of a mute viol player whose music holds back something beyond comprehension.">
+<meta name="twitter:image" content="https://musicoferichzann.com/twitter-image.png">
+<meta name="twitter:image:alt" content="The Music of Erich Zann - a golden viol against a cosmic void, with the tagline: An Interactive Audio Drama">
+
+<!-- Preconnect for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Fonts and Styles -->
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="zann.css">
+
+<!-- Schema.org Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "The Music of Erich Zann",
+  "alternateName": "The Music of Erich Zann: An Interactive Audio Drama",
+  "description": "An interactive adaptation of H.P. Lovecraft's tale of cosmic horror. Play as a student drawn into the mystery of an old mute viol player whose nightly music holds back something beyond comprehension.",
+  "url": "https://musicoferichzann.com/",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://musicoferichzann.com/og-image.jpg",
+    "width": 1200,
+    "height": 630,
+    "caption": "The Music of Erich Zann - An Interactive Audio Drama"
+  },
+  "thumbnailUrl": "https://musicoferichzann.com/favicon-512x512.png",
+  "screenshot": "https://musicoferichzann.com/og-image.jpg",
+  "genre": ["Interactive Fiction", "Horror", "Cosmic Horror", "Gamebook"],
+  "gamePlatform": "Web Browser",
+  "applicationCategory": "Game",
+  "operatingSystem": "Any",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "isFamilyFriendly": true,
+  "numberOfPlayers": {
+    "@type": "QuantitativeValue",
+    "value": 1
+  },
+  "playMode": "SinglePlayer",
+  "gameItem": [
+    {
+      "@type": "Thing",
+      "name": "Perception",
+      "description": "Sharpness of mind - the ability to notice what others miss"
+    },
+    {
+      "@type": "Thing",
+      "name": "Sanity",
+      "description": "Mental fortitude against the unknown"
+    },
+    {
+      "@type": "Thing",
+      "name": "Luck",
+      "description": "The fortune that stands between you and the abyss"
+    }
+  ],
+  "character": [
+    {
+      "@type": "Person",
+      "name": "The Narrator",
+      "description": "A student of metaphysics; impoverished and too curious for his own good"
+    },
+    {
+      "@type": "Person",
+      "name": "Erich Zann",
+      "description": "An old mute German who plays the viol; gaunt, grey-bearded, and terrified of something beyond his window"
+    },
+    {
+      "@type": "Person",
+      "name": "Blandot",
+      "description": "Landlord of the boarding house; indifferent, content to collect his rent"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="stats-bar">
+  <div class="stat-item"><span class="stat-label">Perception</span> <span class="stat-val" id="perception-display">0</span></div>
+  <div class="stat-item"><span class="stat-label">Sanity</span> <span class="stat-val" id="sanity-display">0</span></div>
+  <div class="stat-item"><span class="stat-label">Luck</span> <span class="stat-val" id="luck-display">0</span></div>
+  <button id="save-btn" onclick="Game.saveGame()" title="Save your progress">&#x26B3; Save</button>
+</div>
+
+<div id="parchment-wrap">
+<div id="parchment">
+<div id="content"></div>
+<div id="choices"></div>
+</div>
+</div>
+
+<div id="dice-overlay" role="dialog" aria-modal="true" aria-labelledby="dice-title">
+  <div class="dice-title" id="dice-title">Test Your Perception</div>
+  <div class="dice-container" id="dice-container"></div>
+  <div class="dice-result" id="dice-result" aria-live="polite"></div>
+  <button class="dice-continue" id="dice-continue" onclick="Game.closeDice()">Continue</button>
+</div>
+
+<button id="audio-toggle" onclick="Audio.toggle()" title="Toggle Sound">&#x266A;</button>
+
+<footer id="site-footer">
+  Words + Game: Phil Gooch. Sound: <a href="https://tabletopaudio.com/" target="_blank">Tabletop Audio</a>.
+</footer>
+
+<script src="audio.js"></script>
+<script src="viol_game.js"></script>
+<script src="act1_scenes.js"></script>
+<script src="act2_scenes.js"></script>
+<script src="act3_scenes.js"></script>
+<script src="scenes.js"></script>
+<script src="engine.js"></script>
+
+</body>
+</html>
