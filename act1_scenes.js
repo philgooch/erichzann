@@ -23,7 +23,7 @@ const ACT1_SCENES = {
   ambience: 'street',
   audio: [
     { src: 'Olde_Towne-crickets_loop.ogg', volume: 0.4, loop: true },
-    { src: 'Olde_Towne-dogs_barking.ogg', volume: 0.1, loop: false },
+    { src: 'Olde_Towne-dogs_barking.ogg', volume: 0.05, loop: false },
     { src: 'Olde_Towne-light_rain_loop.ogg', volume: 0.2, loop: true }
   ],
   next: 's1_1'
@@ -41,8 +41,8 @@ const ACT1_SCENES = {
   ambience: 'street',
   audio: [
     { src: 'Olde_Towne-crickets_loop.ogg', volume: 0.4, loop: true },
-    { src: 'Olde_Towne-dogs_barking.ogg', volume: 0.1, loop: false },
-    { src: 'Olde_Towne-church_bell.ogg', volume: 0.04, loop: false }
+    { src: 'Olde_Towne-dogs_barking.ogg', volume: 0.05, loop: false },
+    { src: 'Olde_Towne-church_bell.ogg', volume: 0.02, loop: false }
   ],
   text: `<p>You have been walking for hours. The streets of this quarter are narrow and steep, and the misty dusk clings to the buildings like soot. The last scraps of daylight form a thin orange line above the rooftops, and below it the city is a jumble of shadow and lamplight.</p>
 <p>For three days now you have been searching for lodgings. The university term begins next week, and the modest sum remaining to you after tuition will not stretch to the boarding houses near the campus, where students with better fortunes take their rooms. Always evicted for want of money, you need somewhere cheaper.</p>
@@ -105,7 +105,7 @@ const ACT1_SCENES = {
   title: '{{if knows_street_name >= 1}}The Rue d\u2019Auseil{{else}}The Nameless Street{{/if}}',
   ambience: 'street',
   audio: [
-        { src: 'Film_Noir-traffic_distant_loop.ogg', volume: 0.03, loop: true },
+        { src: 'Olde_Towne-eerie_tone_loop.ogg', volume: 0.2, loop: true },
         { src: 'Olde_Towne-church_bell.ogg', volume: 0.03, loop: true },
         { src: 'Olde_Towne-dogs_barking.ogg', volume: 0.05, loop: true }
       ],
@@ -177,6 +177,7 @@ const ACT1_SCENES = {
   title: 'Blandot\u2019s House',
   ambience: 'boarding_house',
   audio: [
+    { src: 'Olde_Towne-eerie_tone_loop.ogg', volume: 0.1, loop: true },
     { src: 'House_on_the_Hill-door_knock.ogg', volume: 0.3, loop: false },
     { src: 'Bleakwater_Docks-footsteps_ambient_loop.ogg', volume: 0.4, loop: true }
   ],
