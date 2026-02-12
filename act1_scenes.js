@@ -372,7 +372,7 @@ const ACT1_SCENES = {
       paragraph: 18,
       effects: { heard_music: 1 },
       audio: [
-        { src: 'Bleakwater_Docks-dark_tone_loop.ogg', volume: 0.4, loop: true },
+        { src: 'Bleakwater_Docks-bent_tone_loop.ogg', volume: 0.4, loop: true },
         { src: 'Film_Noir-sting_harp.ogg', volume: 0.1, loop: true },
         { src: 'Film_Noir-sting_orchestral.ogg', volume: 0.1, loop: true },
       ],
