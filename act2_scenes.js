@@ -114,8 +114,8 @@ const ACT2_SCENES = {
   ambience: 'boarding_house',
   audio: [
     { src: 'Bleakwater_Docks-bent_tone_loop.ogg', volume: 0.2, loop: true },
-    { src: 'House_on_the_Hill-clock_loop.ogg', volume: 0.15, loop: true },
-    { src: 'House_on_the_Hill-house_rattle.ogg', volume: 0.05, loop: true },
+    { src: 'House_on_the_Hill-clock_loop.ogg', volume: 0.03, loop: true },
+    { src: 'House_on_the_Hill-house_rattle.ogg', volume: 0.03, loop: false },
     { src: 'House_on_the_Hill-wind_outside_loop.ogg', volume: 0.1, loop: true },
   ],
   text: `<p>Over the following days, despite all warnings, you begin to learn about the other people in Blandot\u2019s house.</p>
@@ -213,8 +213,8 @@ const ACT2_SCENES = {
   ambience: 'boarding_house',
   audio: [
     { src: 'Bleakwater_Docks-bent_tone_loop.ogg', volume: 0.4, loop: true },
-    { src: 'House_on_the_Hill-clock_loop.ogg', volume: 0.1, loop: true },
-    { src: 'House_on_the_Hill-house_rattle.ogg', volume: 0.1, loop: true },
+    { src: 'House_on_the_Hill-clock_loop.ogg', volume: 0.03, loop: true },
+    { src: 'House_on_the_Hill-house_rattle.ogg', volume: 0.03, loop: false },
     { src: 'House_on_the_Hill-wind_outside_loop.ogg', volume: 0.1, loop: true },
   ],
   text: `<p>You find the note one evening, slipped under your door while you were at the university. The paper is the same thin, almost translucent stock as before. The handwriting is the same: angular, Germanic, but steadier now.</p>
@@ -573,7 +573,7 @@ const ACT2_SCENES = {
   ambience: 'garret',
   audio: [
     { src: 'House_on_the_Hill-wind_outside_loop.ogg', volume: 0.05, loop: true },
-    { src: 'House_on_the_Hill-clock_loop.ogg', volume: 0.1, loop: true },
+    { src: 'House_on_the_Hill-clock_loop.ogg', volume: 0.03, loop: true },
   ],
   text: `<p>Something has shifted between you. The garret is no longer Zann\u2019s secret, it is a secret you share. You visit most evenings now, arriving before ten, sitting in the second chair while Zann prepares for his nightly vigil. Sometimes you talk and he writes, and together you construct a dialogue from speech and paper and gesture.</p>
 <p>And he has begun, at last, to write the manuscript.</p>
@@ -603,7 +603,7 @@ const ACT2_SCENES = {
       label: 'B',
       text: 'Help him write \u2014 ask questions, organise his thoughts, fill in the gaps.',
       audio: [
-        { src: 'House_on_the_Hill-house_rattle.ogg', volume: 0.2, loop: true },
+        { src: 'House_on_the_Hill-house_rattle.ogg', volume: 0.03, loop: false },
       ],
       paragraph: 126,
       effects: { knowledge: 1, has_manuscript: 1, zann_trust: 1 },
