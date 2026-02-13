@@ -106,8 +106,8 @@ const ACT1_SCENES = {
   ambience: 'street',
   audio: [
         { src: 'Olde_Towne-eerie_tone_loop.ogg', volume: 0.2, loop: true },
-        { src: 'Olde_Towne-church_bell.ogg', volume: 0.03, loop: true },
-        { src: 'Olde_Towne-dogs_barking.ogg', volume: 0.05, loop: true }
+        { src: 'Olde_Towne-church_bell.ogg', volume: 0.01, loop: false },
+        { src: 'Olde_Towne-dogs_barking.ogg', volume: 0.03, loop: false }
       ],
   text: `<p>The street climbs with a malicious obstinacy, as if the cobblestones resent your presence and are tilting away from you. You lean into the gradient, your calves burning.</p>
 <p>The buildings on either side are ancient, and not gracefully \u2014 more a stubborn, hostile endurance. They lean toward one another across the narrow gap, their upper storeys jutting out on blackened timber frames, and above them the sky is a frayed, dark blue, pricked with early stars.</p>
