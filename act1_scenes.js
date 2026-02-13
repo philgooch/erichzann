@@ -330,6 +330,9 @@ const ACT1_SCENES = {
     {
       label: 'C',
       text: 'Go out for food. You have not eaten since morning.',
+      audio: [
+        { src: 'Film_Noir-music_dark_city_loop.ogg', volume: 0.2, loop: false },
+      ],
       paragraph: 16,
       effects: { suspicion: 1 },
       outcome: `<p>Your stomach reminds you that philosophy does not fill it. You take your coat and go out.</p>
@@ -357,7 +360,8 @@ const ACT1_SCENES = {
     { src: 'House_on_the_Hill-wind_outside_loop.ogg', volume: 0.1, loop: true },
     { src: 'Bleakwater_Docks-footsteps_ambient_loop.ogg', volume: 0.2, loop: true },
     { src: 'House_on_the_Hill-clock_loop.ogg', volume: 0.03, loop: true },
-    { src: 'House_on_the_Hill-house_rattle.ogg', volume: 0.03, loop: false }
+    { src: 'Bleakwater_Docks-bent_tone_loop.ogg', volume: 0.4, loop: true },
+    { src: '07_Part_Fratres_String_Quartet.mp3', volume: 0.3, loop: false },
   ],
   text: `<p>You are in bed. The sheets are rough, the mattress thin. Sleep, which should have come easily after so much walking, does not come at all. You lie in the dark and listen to the house.</p>
 <p>It breathes. That is the only word for it. The old timber frame expands and contracts with the changing temperature, performing a prelude of creaks and groans and sighs. The walls tick. The floorboards whisper. Somewhere, a pipe gurgles.</p>
@@ -373,9 +377,7 @@ const ACT1_SCENES = {
       paragraph: 18,
       effects: { heard_music: 1 },
       audio: [
-        { src: 'Bleakwater_Docks-bent_tone_loop.ogg', volume: 0.4, loop: true },
-        { src: 'Film_Noir-sting_harp.ogg', volume: 0.1, loop: true },
-        { src: 'Film_Noir-sting_orchestral.ogg', volume: 0.1, loop: true },
+        { src: 'Bleakwater_Docks-dark_tone_loop.ogg', volume: 0.4, loop: true },
       ],
       skillTest: {
         stat: 'perception',
@@ -397,8 +399,6 @@ const ACT1_SCENES = {
       effects: { heard_music: 1 },
       audio: [
         { src: 'Bleakwater_Docks-dark_tone_loop.ogg', volume: 0.4, loop: true },
-        { src: 'Film_Noir-sting_harp.ogg', volume: 0.1, loop: true },
-        { src: 'Film_Noir-sting_orchestral.ogg', volume: 0.1, loop: true },
       ],
       outcome: `<p>You pull the thin pillow over your head and try to ignore the music. You are tired. You have been walking all day, and the mattress, for all its faults, is better than the bench at the railway station where you spent the previous night. Sleep should be easy.</p>
 <p>But the music will not let you go. It threads through the fabric of the pillow, through the bones of your skull, into the place where thoughts become dreams. You drift toward sleep and the music follows: softening, deepening, becoming less like sound and more like the memory of sound.</p>
@@ -413,8 +413,6 @@ const ACT1_SCENES = {
       effects: { heard_music: 1, dread: 1 },
       audio: [
         { src: 'Bleakwater_Docks-dark_tone_loop.ogg', volume: 0.4, loop: true },
-        { src: 'Film_Noir-sting_harp.ogg', volume: 0.1, loop: true },
-        { src: 'Film_Noir-sting_orchestral.ogg', volume: 0.1, loop: true },
       ],
       outcome: `<p>You cannot lie still. The music pulls at you with an almost physical force, tugging at the edge of your attention. You rise, wrap yourself in your coat, and open the door.</p>
 <p>The corridor is dark. The gas lamp on this landing has been turned off, or has gone out on its own. 

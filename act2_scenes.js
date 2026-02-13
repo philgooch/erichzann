@@ -758,7 +758,7 @@ const ACT2_SCENES = {
   game: 'viol_game',
   paragraph: 132,
   title: 'The Viol',
-  ambience: 'garret',
+  ambience: 'garret_music',
   audio: null,
   next: 's2_10'
 },
