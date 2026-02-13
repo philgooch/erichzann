@@ -495,7 +495,7 @@ const ACT3_SCENES = {
   text: `<p>You hold the window. Your arms burn. Your fingers are numb. The frost on the frame has fused with your skin, and you can no longer tell where the wood ends and your hands begin. The cold has passed through pain into a white blankness that is almost comfortable.</p>
 <p>Behind you, Zann plays. The music is thin now, reedy, the voice of an instrument pushed beyond its limits by a man pushed beyond his. Each note costs him something. You can hear it: the incremental diminishment, the slow subtraction of a life measured in frequencies and intervals.</p>
 <p>The void pushes. You push back. The window frame groans. The inscriptions carved into the wood pulse with their own light, responding to your grip, to the warmth of your hands, to the simple fact of a living body pressed against the boundary between one world and the absence of all worlds.</p>
-<p>Zann plays a descending phrase. Three notes, each lower than the last. The final note resonates through the frame and into your bones, and you feel the window shift. The movement is neither opening nor closing; it is something else entirely. A transformation.</p>`,
+<p>Zann plays a descending phrase. Three notes, each lower than the last. The final note resonates through the frame and into your bones, and you feel the window shift. The movement is neither opening nor closing; it is a transformation.</p>`,
   conditionals: [
     {
       check: 'has_manuscript >= 1',
