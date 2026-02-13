@@ -65,7 +65,9 @@ const ACT2_SCENES = {
     {
       label: 'B',
       text: 'Explore the neighbourhood. You know so little about this part of the city.',
-      audio: null,
+      audio: [
+        { src: 'Film_Noir-music_dark_city_loop.ogg', volume: 0.1, loop: true },
+      ],
       paragraph: 102,
       effects: { knowledge: 1 },
       outcome: `<p>You take your coat and step outside. The Rue d\u2019Auseil is quieter than a street in a busy city should be. The cobblestones are damp with a moisture that seems to come from the stone itself rather than from any rain. The gas lamps are already lit, though the sky still holds a thin wash of grey.</p>
