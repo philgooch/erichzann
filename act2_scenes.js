@@ -31,7 +31,7 @@ const ACT2_SCENES = {
   ambience: 'boarding_house',
   audio: [
     { src: 'Bleakwater_Docks-bent_tone_loop.ogg', volume: 0.4, loop: true },
-    { src: '07_Part_Fratres_String_Quartet.mp3', volume: 0.4, loop: false },
+    { src: 'Film_Noir-music_dark_city_loop.ogg', volume: 0.1, loop: true },
   ],
   text: `<p>A week passes. Then two. The university term begins and you attend your lectures, take your notes, walk the long route from the campus back to the Rue d\u2019Auseil each evening. You have not yet found a shorter path. You are beginning to suspect there is none.</p>
 <p>The city is old and indifferent to you. The lecture halls smell of dust and ambition. Your professors speak of Kant and Hegel, of the limits of reason, of the categories that bind perception to the knowable world. You sit in the back row and take meticulous notes, and all the while a part of your mind is elsewhere; in a garret at the top of a house that should not exist, listening to music that should not be possible.</p>
@@ -247,8 +247,7 @@ const ACT2_SCENES = {
       text: 'Go, but cautiously \u2014 prepare yourself first.',
       paragraph: 110,
       effects: { knowledge: 1 },
-      outcome: `<p>You do not go at ten. You go at nine.</p>
-<p>You spend the hour before in your room, reviewing the notes that you have been keeping in a separate book since your first night on the Rue d\u2019Auseil. Observations. Impressions. Questions. You read through them with the disciplined eye of a scholar preparing for a viva, and you compile a list of things you need to know.</p>
+      outcome: `<p>You spend the hour before in your room, reviewing the notes that you have been keeping in a separate book since your first night on the Rue d\u2019Auseil. Observations. Impressions. Questions. You read through them with the disciplined eye of a scholar preparing for a viva, and you compile a list of things you need to know.</p>
 <p><em>The window \u2014 what lies beyond it? The music \u2014 what does it hold back, and how? The manuscript \u2014 what has he written, and why? The street \u2014 why can it not be found?</em></p>
 <p>At ten you climb the stairs, your questions ordered, your mind as clear as you can make it.</p>
 <p>The garret door is ajar. Zann sits inside, waiting. He has arranged a second chair. Candles burn. The room is as ready as he can make it.</p>

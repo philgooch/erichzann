@@ -444,7 +444,7 @@ const ACT1_SCENES = {
   ambience: 'boarding_house',
   audio: [
     { src: 'Bleakwater_Docks-bent_tone_loop.ogg', volume: 0.4, loop: true },
-    { src: 'Film_Noir-music_dark_city_loop.ogg', volume: 0.1, loop: true },
+    { src: '07_Part_Fratres_String_Quartet.mp3', volume: 0.4, loop: false },
   ],
   text: `<p>Three days pass. You attend the university, take your lectures, return to the Rue d\u2019Auseil in the evenings. Each night the music plays. Each night it is different, and each night it is the same \u2014 strange, beautiful, and faintly, insistently, wrong.</p>
 <p>You have asked Blandot about the musician. He offered you nothing but a shrug and a name.</p>
