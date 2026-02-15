@@ -19,12 +19,70 @@ const state = {
   diceCallback: null
 };
 
-// --- DICE SYSTEM ---
+// --- DICE SYSTEM (3D Cube Dice with Pips) ---
+
+// Pip positions on a 3x3 grid (positions 1-9) for each face value
+const PIP_PATTERNS = {
+  1: [5],
+  2: [3, 7],
+  3: [3, 5, 7],
+  4: [1, 3, 7, 9],
+  5: [1, 3, 5, 7, 9],
+  6: [1, 3, 4, 6, 7, 9]
+};
+
+function buildDieFace(value) {
+  const face = document.createElement('div');
+  face.className = `die-face die-face-${value}`;
+  const pattern = PIP_PATTERNS[value];
+  for (let i = 1; i <= 9; i++) {
+    const pip = document.createElement('span');
+    pip.className = `pip p${i}` + (pattern.includes(i) ? ' show' : '');
+    face.appendChild(pip);
+  }
+  return face;
+}
+
+function buildDie() {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'die-wrapper';
+  const scene = document.createElement('div');
+  scene.className = 'die-scene';
+  const cube = document.createElement('div');
+  cube.className = 'die-cube';
+  for (let v = 1; v <= 6; v++) cube.appendChild(buildDieFace(v));
+  scene.appendChild(cube);
+  wrapper.appendChild(scene);
+  const shadow = document.createElement('div');
+  shadow.className = 'die-shadow';
+  wrapper.appendChild(shadow);
+  return wrapper;
+}
+
 const Dice = {
+  // Rotation to bring each face toward the viewer
+  FACE_ROTATIONS: {
+    1: { x:   0, y:   0 },
+    2: { x:   0, y: -90 },
+    3: { x:  90, y:   0 },
+    4: { x: -90, y:   0 },
+    5: { x:   0, y:  90 },
+    6: { x:   0, y: 180 }
+  },
+
   roll(n, sides) {
     let total = 0;
     for (let i = 0; i < n; i++) total += Math.floor(Math.random() * sides) + 1;
     return total;
+  },
+
+  rollCubeTo(cubeEl, targetValue) {
+    const face = this.FACE_ROTATIONS[targetValue];
+    const spinsX = (2 + Math.floor(Math.random() * 2)) * 360;
+    const spinsY = (2 + Math.floor(Math.random() * 2)) * 360;
+    const dirX = Math.random() > 0.5 ? 1 : -1;
+    const dirY = Math.random() > 0.5 ? 1 : -1;
+    cubeEl.style.transform = `rotateX(${face.x + spinsX * dirX}deg) rotateY(${face.y + spinsY * dirY}deg)`;
   },
 
   showTest(statName, callback) {
@@ -39,42 +97,52 @@ const Dice = {
 
     title.textContent = 'Test Your ' + statName.charAt(0).toUpperCase() + statName.slice(1);
 
-    // Build dice elements dynamically
+    // Build 3D dice dynamically
     container.innerHTML = '';
-    const dice = [];
-    for (let i = 0; i < numDice; i++) {
-      const die = document.createElement('div');
-      die.className = 'die rolling';
-      die.textContent = '?';
-      container.appendChild(die);
-      dice.push(die);
-    }
     if (numDice === 4) container.classList.add('four-dice');
     else container.classList.remove('four-dice');
+
+    const cubes = [];
+    const values = [];
+    let total = 0;
+    for (let i = 0; i < numDice; i++) {
+      const wrapper = buildDie();
+      container.appendChild(wrapper);
+      const cube = wrapper.querySelector('.die-cube');
+      cubes.push(cube);
+      const val = Math.floor(Math.random() * 6) + 1;
+      values.push(val);
+      total += val;
+    }
 
     result.classList.remove('visible');
     cont.classList.remove('visible');
     result.innerHTML = '';
     overlay.classList.add('visible');
 
+    // Reset cubes instantly (no transition)
+    cubes.forEach(cube => {
+      cube.classList.add('rolling');
+      cube.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+
     Audio.playDiceRoll();
 
     const target = state[statName];
-    let rollInterval = setInterval(() => {
-      dice.forEach(die => { die.textContent = Math.floor(Math.random() * 6) + 1; });
-    }, 80);
+    const success = total <= target;
 
-    setTimeout(() => {
-      clearInterval(rollInterval);
-      let total = 0;
-      dice.forEach(die => {
-        const val = Math.floor(Math.random() * 6) + 1;
-        die.textContent = val;
-        die.classList.remove('rolling');
-        total += val;
+    // Next frame: re-enable transition and roll to target face
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        cubes.forEach((cube, i) => {
+          cube.classList.remove('rolling');
+          this.rollCubeTo(cube, values[i]);
+        });
       });
-      const success = total <= target;
+    });
 
+    // Show result after the CSS transition completes
+    setTimeout(() => {
       result.innerHTML = `Your ${statName.toUpperCase()} is <strong>${target}</strong>. You rolled <strong>${total}</strong>.<br>` +
         (success
           ? `<span class="success-text">\u2726 You succeeded! \u2726</span>`
@@ -86,7 +154,7 @@ const Dice = {
         cont.focus();
         state.diceCallback = () => callback(success);
       }, 600);
-    }, 900);
+    }, 1400);
   }
 };
 
@@ -181,6 +249,9 @@ const ParagraphReveal = {
   autoTimer: null,
   onComplete: null,
   indicatorEl: null,
+  _userScrolledUp: false,
+  _isProgrammaticScroll: false,
+  _scrollDownIndicator: null,
 
   completeDialogBox(el) {
     if (!el || !el.classList.contains('dialog-box')) return;
@@ -206,6 +277,77 @@ const ParagraphReveal = {
       e.stopPropagation();
       if (this.active) this.skipCurrent();
     });
+
+    // Scroll tracking: detect when user manually scrolls up
+    this._initScrollTracking();
+  },
+
+  _initScrollTracking() {
+    // Create floating "new content below" indicator
+    this._scrollDownIndicator = document.createElement('div');
+    this._scrollDownIndicator.className = 'scroll-down-indicator';
+    this._scrollDownIndicator.innerHTML = '&#x25BE; New content below';
+    this._scrollDownIndicator.addEventListener('click', () => {
+      this._userScrolledUp = false;
+      this._hideScrollIndicator();
+      // Scroll to the latest revealed element or choices
+      const choices = document.getElementById('choices');
+      if (choices && choices.innerHTML.trim()) {
+        const rect = choices.getBoundingClientRect();
+        const targetY = window.scrollY + rect.top - window.innerHeight * 0.35;
+        this.smoothScrollTo(targetY, 1400);
+      } else if (this.elements.length > 0) {
+        const lastRevealed = this.elements[Math.max(0, this.currentIndex - 1)];
+        if (lastRevealed) {
+          const rect = lastRevealed.getBoundingClientRect();
+          const targetY = window.scrollY + rect.top - window.innerHeight * 0.35;
+          this.smoothScrollTo(targetY, 1400);
+        }
+      }
+    });
+    document.body.appendChild(this._scrollDownIndicator);
+
+    // Track scroll position to detect user scrolling up
+    let lastScrollY = window.scrollY;
+    window.addEventListener('scroll', () => {
+      // Ignore programmatic scrolls
+      if (this._isProgrammaticScroll) return;
+
+      const currentY = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight;
+      const viewHeight = window.innerHeight;
+      const distFromBottom = docHeight - (currentY + viewHeight);
+
+      // User scrolled up and is far from the bottom — they're reading earlier content
+      if (currentY < lastScrollY && distFromBottom > viewHeight * 0.8) {
+        this._userScrolledUp = true;
+      }
+
+      // User scrolled back near the bottom — re-enable auto-scroll
+      if (distFromBottom < viewHeight * 0.3) {
+        this._userScrolledUp = false;
+        this._hideScrollIndicator();
+      }
+
+      lastScrollY = currentY;
+    }, { passive: true });
+  },
+
+  _showScrollIndicator() {
+    if (this._scrollDownIndicator) {
+      this._scrollDownIndicator.classList.add('visible');
+    }
+  },
+
+  _hideScrollIndicator() {
+    if (this._scrollDownIndicator) {
+      this._scrollDownIndicator.classList.remove('visible');
+    }
+  },
+
+  resetScrollTracking() {
+    this._userScrolledUp = false;
+    this._hideScrollIndicator();
   },
 
   showIndicator(el) {
@@ -306,6 +448,11 @@ const ParagraphReveal = {
   },
 
   scrollToElement(el) {
+    // Don't auto-scroll if user has scrolled up to read earlier content
+    if (this._userScrolledUp) {
+      this._showScrollIndicator();
+      return;
+    }
     const rect = el.getBoundingClientRect();
     const viewHeight = window.innerHeight;
     if (rect.top > viewHeight * 0.65) {
@@ -315,13 +462,19 @@ const ParagraphReveal = {
   },
 
   smoothScrollTo(targetY, duration) {
-    if (this._scrollRAF) cancelAnimationFrame(this._scrollRAF);
+    // Cancel any in-progress scroll
+    if (this._scrollRAF) {
+      cancelAnimationFrame(this._scrollRAF);
+      this._scrollRAF = null;
+      this._isProgrammaticScroll = false;
+    }
 
     const startY = window.scrollY;
     const distance = targetY - startY;
     if (Math.abs(distance) < 1) return;
 
     const startTime = performance.now();
+    this._isProgrammaticScroll = true;
 
     const easeInOutQuart = (t) => t < 0.5
       ? 8 * t * t * t * t
@@ -336,6 +489,7 @@ const ParagraphReveal = {
         this._scrollRAF = requestAnimationFrame(step);
       } else {
         this._scrollRAF = null;
+        this._isProgrammaticScroll = false;
       }
     };
 
@@ -584,6 +738,7 @@ const Game = {
             const nextPara = nextScene ? nextScene.paragraph : '?';
             choices.innerHTML = `<button class="continue-btn" onclick="Game.loadScene('${scene.next}')">Continue</button>`;
           });
+          ParagraphReveal.resetScrollTracking();
           window.scrollTo({ top: 0 });
           return;
         } else {
@@ -628,6 +783,7 @@ const Game = {
       }
 
       content.classList.remove('fading');
+      ParagraphReveal.resetScrollTracking();
       window.scrollTo({ top: 0 });
     }, 500);
   },
@@ -777,6 +933,11 @@ const Game = {
 
   scrollToChoices() {
     setTimeout(() => {
+      // Don't auto-scroll if user has scrolled up to read earlier content
+      if (ParagraphReveal._userScrolledUp) {
+        ParagraphReveal._showScrollIndicator();
+        return;
+      }
       const el = document.getElementById('choices');
       if (el && el.innerHTML.trim()) {
         const rect = el.getBoundingClientRect();
@@ -915,6 +1076,10 @@ const Game = {
 
     // Scroll to outcome
     setTimeout(() => {
+      if (ParagraphReveal._userScrolledUp) {
+        ParagraphReveal._showScrollIndicator();
+        return;
+      }
       const outcome = content.querySelector('.outcome-section:last-of-type');
       if (outcome) {
         const rect = outcome.getBoundingClientRect();
@@ -1033,6 +1198,7 @@ const Game = {
     Audio.stopAll();
     this.deleteSave();
     this.showTitle();
+    ParagraphReveal.resetScrollTracking();
     window.scrollTo({ top: 0 });
   },
 
